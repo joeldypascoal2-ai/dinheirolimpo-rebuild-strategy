@@ -1,36 +1,42 @@
-# Dinheiro Limpo — Etapa 1: Auditoria concluída, plano para as etapas seguintes
+# Dinheiro Limpo — Etapa 2: Direcção, Sistema e Arquitectura
 
-A auditoria completa está escrita em `docs/auditoria-dinheirolimpo.md`, com as 22 secções pedidas (A a V), prioridades P0–P3 e a verificação crítica final. Nada foi alterado no site actual e nada foi construído ainda.
+A etapa 2 está documentada em `docs/sistema-visual-e-arquitectura.md`. Este trabalho não altera a aplicação nem constrói a homepage.
 
-## O que a auditoria encontrou (essencial)
+## Decisões visuais seleccionadas
 
-- 13 páginas, 43 artigos, 47 categorias, 4 programas, 5 pessoas na equipa, 7+ episódios de podcast e uma página de evento (FIN Summit 2026) fora do menu.
-- **P0 de credibilidade:** testemunhos em lorem ipsum assinados por pessoas inexistentes na página de cursos; a missão por escrever na página Sobre ("aqui vai a missão do dinheiro limpo"); loja vazia e pública; `sample-page` do WordPress indexada; rodapé em inglês com links de demonstração.
-- **P0 de estrutura:** a homepage é um índice de blog — não apresenta a marca, o fundador, a equipa nem os programas. O H1 é "Home".
-- **Desktop:** não há overflow em nenhum tamanho entre 360 e 1920 px (testado). O problema é não existir limite de leitura — o conteúdo ocupa 1920 px de largura aos 1920 px.
-- **Duas identidades:** `/blog/` usa cabeçalho, rodapé e tipografia diferentes do resto do site.
-- Sem meta descriptions, sem dados estruturados, sem página de contactos.
+- **Direcção:** Editorial Assimétrica de Prestígio.
+- **Paleta:** verde institucional — `#123C2F`, `#1F6A4A`, `#D6E3D9`, `#F6F4EE`, `#202723`.
+- **Tipografia:** Libre Baskerville para títulos; IBM Plex Sans para corpo e interface.
+- **Estrutura:** grelha magazine assimétrica; fotografia documental real; margens generosas; bordas finas; cantos discretos; quase nenhuma sombra.
+- **Hierarquia:** Dinheiro Limpo → instituição; Euclides Francisco → fundador e autoridade; equipa → estrutura humana real.
 
-## Próximo passo antes de qualquer implementação
+## Sistema definido
 
-Preciso das respostas da secção **Q** da auditoria (15 pontos), nomeadamente: logótipo e cores oficiais, missão e história, biografia de Euclides e da equipa, preços e programas dos cursos, origem dos números de impacto, testemunhos reais autorizados, contactos oficiais, redes activas, e a decisão sobre venda online (checkout no site ou FaciPay/WhatsApp).
+- Escala tipográfica responsiva, espaçamento de base 4 px, containers de leitura/padrão/largo e grelha 4/8/12 colunas.
+- Breakpoints e regras específicas de 360 a 1920 px; navegação móvel até 1023 px.
+- Sistemas completos para botões, links, cards, formulários, navegação, footer, fotografia, conteúdos, cursos, equipa e podcast.
+- Motion mínimo, WCAG 2.2 AA, Core Web Vitals como critério, metadata e dados estruturados por tipo de página.
+- Biblioteca conceptual curta, com variantes apenas quando duas utilizações reais as justificam.
 
-## Faseamento proposto
+## Arquitectura final
 
-1. **Fase 0 — Validação:** respostas da secção Q + materiais reais.
-2. **Fase 1 — Correcções de emergência no site actual** (lorem ipsum, placeholder, sample-page, loja, inglês residual). Requer acesso ao WordPress.
-3. **Fase 2 — Fundações no Lovable:** design system (tipografia, cor, grelha, espaçamento), layout global, cabeçalho e rodapé reais, rotas.
-4. **Fase 3 — Núcleo institucional:** Início, Sobre, Fundador, Equipa, Contactos.
-5. **Fase 4 — Programas:** índice + página por programa com estrutura fixa.
-6. **Fase 5 — Conteúdos:** migração dos 43 artigos com slugs preservados, temas consolidados, podcast com página por episódio, newsletter integrada.
-7. **Fase 6 — FIN Summit.**
-8. **Fase 7 — Qualidade final:** SEO técnico, redireccionamentos 1:1, acessibilidade, performance, revisão editorial em português de Angola, testes em todos os breakpoints.
+- **Início**
+- **Sobre:** Instituição, História, Euclides Francisco, Equipa
+- **Programas:** índice + uma página por programa
+- **Conteúdos:** Artigos, Temas, Podcast e Newsletter
+- **FIN Summit**
+- **Contactos**
+- **Privacidade e Termos**
 
-## Notas técnicas
+Cada página tem função e CTA definidos no documento. Artigos ligam a programas relevantes; fundador/equipa ligam aos conteúdos assinados; FIN Summit liga a episódios e artigos relacionados.
 
-- Reconstrução em TanStack Start (React) no Lovable, com uma rota por página e conteúdo modelado (artigos, episódios, programas, equipa) em vez de páginas manuais.
-- Migração dos artigos via API do WordPress, preservando slug, data, categoria, imagem e autor; mapa de redireccionamentos obrigatório antes de publicar.
-- Layouts fluidos: CSS Grid/Flexbox, `max-width`, `clamp()`, `aspect-ratio`, imagens responsivas; sem posicionamento absoluto estrutural nem larguras rígidas.
-- Sem bibliotecas de animação; movimento limitado a transições de hover/foco e respeito por `prefers-reduced-motion`.
+## Próxima etapa após aprovação
 
-Aprovando, começo pela **Fase 2 (fundações e design system)** assim que tiver os materiais da Fase 0 — ou, se preferir, avanço primeiro só com a estrutura técnica e o sistema visual em rascunho, sem publicar conteúdo por validar.
+1. Receber e validar logótipo, fotografias, missão, história, biografias, cargos, dados dos programas, números, testemunhos e fluxo comercial.
+2. Implementar apenas as fundações no Lovable: tokens, tipografia, grelha, layout global, navegação, footer e componentes base.
+3. Construir a experiência principal seguindo exactamente o sistema aprovado, sem inventar conteúdo.
+4. Migrar conteúdos e páginas por fases, preservando slugs e redireccionamentos.
+
+## Restrições mantidas
+
+Sem reconstrução completa nesta etapa; sem homepage nova; sem apagar conteúdos; sem pessoas geradas; sem dependências desnecessárias; sem gradientes decorativos, glassmorphism, blobs, glow, cards em excesso ou animações pesadas.
