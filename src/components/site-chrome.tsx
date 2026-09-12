@@ -79,15 +79,11 @@ export function SiteFooter() {
     <footer className="bg-primary text-inverse">
       <div className="container-standard grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div><Wordmark inverse /><p className="mt-6 max-w-xs text-sm text-inverse-muted">Educação financeira, formação e conteúdos para decisões mais conscientes.</p></div>
-        <FooterGroup title="Instituição" links={[["Sobre", "/sobre"], ["Fundador", "/sobre/euclides-francisco"], ["Equipa", "/sobre/equipa"]]} />
-        <FooterGroup title="Explorar" links={[["Programas", "/programas"], ["Artigos", "/conteudos/artigos"], ["Podcast", "/conteudos/podcast"], ["FIN Summit", "/fin-summit"]]} />
-        <FooterGroup title="Contacto" links={[["Falar com a equipa", "/contactos"], ["Newsletter", "/conteudos/newsletter"], ["YouTube", "https://www.youtube.com/channel/UCj0JfuuD4B9iy8318rWyBvg"], ["Spotify", "https://open.spotify.com/show/4S95eUZR1MZtXvN9a6XtE0"]]} />
+        <div><h2 className="font-sans text-xs font-semibold uppercase tracking-[0.08em] text-inverse-muted">Instituição</h2><ul className="mt-4 space-y-2.5 text-sm"><li><Link to="/sobre" className="hover:underline">Sobre</Link></li><li><Link to="/sobre/euclides-francisco" className="hover:underline">Fundador</Link></li><li><Link to="/sobre/equipa" className="hover:underline">Equipa</Link></li></ul></div>
+        <div><h2 className="font-sans text-xs font-semibold uppercase tracking-[0.08em] text-inverse-muted">Explorar</h2><ul className="mt-4 space-y-2.5 text-sm"><li><Link to="/programas" className="hover:underline">Programas</Link></li><li><Link to="/conteudos/artigos" className="hover:underline">Artigos</Link></li><li><Link to="/conteudos/podcast" className="hover:underline">Podcast</Link></li><li><Link to="/fin-summit" className="hover:underline">FIN Summit</Link></li></ul></div>
+        <div><h2 className="font-sans text-xs font-semibold uppercase tracking-[0.08em] text-inverse-muted">Contacto</h2><ul className="mt-4 space-y-2.5 text-sm"><li><Link to="/contactos" className="hover:underline">Falar com a equipa</Link></li><li><Link to="/conteudos/newsletter" className="hover:underline">Newsletter</Link></li><li><a href="https://www.youtube.com/channel/UCj0JfuuD4B9iy8318rWyBvg" target="_blank" rel="noreferrer" className="hover:underline">YouTube</a></li><li><a href="https://open.spotify.com/show/4S95eUZR1MZtXvN9a6XtE0" target="_blank" rel="noreferrer" className="hover:underline">Spotify</a></li></ul></div>
       </div>
       <div className="border-t border-inverse/20"><div className="container-standard flex flex-col gap-3 py-6 text-xs text-inverse-muted sm:flex-row sm:items-center sm:justify-between"><p>© {new Date().getFullYear()} Dinheiro Limpo.</p><div className="flex gap-5"><Link to="/privacidade" className="hover:text-inverse">Privacidade</Link><Link to="/termos" className="hover:text-inverse">Termos</Link></div></div></div>
     </footer>
   );
-}
-
-function FooterGroup({ title, links }: { title: string; links: readonly (readonly [string, string])[] }) {
-  return <div><h2 className="font-sans text-xs font-semibold uppercase tracking-[0.08em] text-inverse-muted">{title}</h2><ul className="mt-4 space-y-2.5 text-sm">{links.map(([label, href]) => <li key={href}>{href.startsWith("http") ? <a href={href} target="_blank" rel="noreferrer" className="hover:underline">{label}</a> : <Link to={href as "/sobre"} className="hover:underline">{label}</Link>}</li>)}</ul></div>;
 }
