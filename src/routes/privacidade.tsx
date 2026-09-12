@@ -1,0 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageIntro } from "@/components/page-intro";
+export const Route = createFileRoute("/privacidade")({ head: () => ({ meta: seo("Privacidade", "Informação de privacidade do website Dinheiro Limpo.") }), component: () => <PageIntro eyebrow="Informação legal" title="Privacidade" description="A política de privacidade oficial encontra-se em validação antes da publicação integral." /> });
+function seo(title:string,description:string){return [{title:`${title} — Dinheiro Limpo`},{name:"description",content:description},{property:"og:title",content:`${title} — Dinheiro Limpo`},{property:"og:description",content:description},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}

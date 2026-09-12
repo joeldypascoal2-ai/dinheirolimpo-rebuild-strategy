@@ -1,0 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageIntro } from "@/components/page-intro";
+export const Route = createFileRoute("/fin-summit")({ head: () => ({ meta: seo("FIN Summit", "FIN Summit 2026 em Luanda, nos dias 31 de Outubro e 1 de Novembro.") }), component: () => <PageIntro eyebrow="31 Outubro — 1 Novembro 2026 · Luanda" title="FIN Summit 2026" description="O evento decorre no Hotel Intercontinental, em Luanda. A experiência e o fluxo de bilhetes serão aprofundados numa etapa própria." link={{ label: "Falar com a equipa", to: "/contactos" }} /> });
+function seo(title:string,description:string){return [{title:`${title} — Dinheiro Limpo`},{name:"description",content:description},{property:"og:title",content:`${title} — Dinheiro Limpo`},{property:"og:description",content:description},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}

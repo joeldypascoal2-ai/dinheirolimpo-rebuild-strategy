@@ -1,0 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageIntro } from "@/components/page-intro";
+export const Route = createFileRoute("/sobre/euclides-francisco")({ head: () => ({ meta: seo("Euclides Francisco", "Conheça o fundador e CEO do Dinheiro Limpo.") }), component: () => <PageIntro eyebrow="Fundador e CEO" title="Euclides Francisco" description="Educador financeiro e empreendedor, Euclides é o fundador do Dinheiro Limpo e a voz que deu origem ao projecto." link={{ label: "Explorar conteúdos", to: "/conteudos" }} /> });
+function seo(title:string,description:string){return [{title:`${title} — Dinheiro Limpo`},{name:"description",content:description},{property:"og:title",content:`${title} — Dinheiro Limpo`},{property:"og:description",content:description},{property:"og:type",content:"profile"},{name:"twitter:card",content:"summary_large_image"}]}
