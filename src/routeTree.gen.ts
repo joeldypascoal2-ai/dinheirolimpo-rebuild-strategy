@@ -10,33 +10,188 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactosRouteImport } from './routes/contactos'
+import { Route as ConteudosRouteImport } from './routes/conteudos'
+import { Route as FinSummitRouteImport } from './routes/fin-summit'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
+import { Route as ProgramasRouteImport } from './routes/programas'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as TermosRouteImport } from './routes/termos'
+import { Route as ConteudosArtigosRouteImport } from './routes/conteudos.artigos'
+import { Route as ConteudosNewsletterRouteImport } from './routes/conteudos.newsletter'
+import { Route as ConteudosPodcastRouteImport } from './routes/conteudos.podcast'
+import { Route as SobreEquipaRouteImport } from './routes/sobre.equipa'
+import { Route as SobreEuclidesFranciscoRouteImport } from './routes/sobre.euclides-francisco'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactosRoute = ContactosRouteImport.update({
+  id: '/contactos',
+  path: '/contactos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConteudosRoute = ConteudosRouteImport.update({
+  id: '/conteudos',
+  path: '/conteudos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinSummitRoute = FinSummitRouteImport.update({
+  id: '/fin-summit',
+  path: '/fin-summit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgramasRoute = ProgramasRouteImport.update({
+  id: '/programas',
+  path: '/programas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermosRoute = TermosRouteImport.update({
+  id: '/termos',
+  path: '/termos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConteudosArtigosRoute = ConteudosArtigosRouteImport.update({
+  id: '/artigos',
+  path: '/artigos',
+  getParentRoute: () => ConteudosRoute,
+} as any)
+const ConteudosNewsletterRoute = ConteudosNewsletterRouteImport.update({
+  id: '/newsletter',
+  path: '/newsletter',
+  getParentRoute: () => ConteudosRoute,
+} as any)
+const ConteudosPodcastRoute = ConteudosPodcastRouteImport.update({
+  id: '/podcast',
+  path: '/podcast',
+  getParentRoute: () => ConteudosRoute,
+} as any)
+const SobreEquipaRoute = SobreEquipaRouteImport.update({
+  id: '/equipa',
+  path: '/equipa',
+  getParentRoute: () => SobreRoute,
+} as any)
+const SobreEuclidesFranciscoRoute = SobreEuclidesFranciscoRouteImport.update({
+  id: '/euclides-francisco',
+  path: '/euclides-francisco',
+  getParentRoute: () => SobreRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contactos': typeof ContactosRoute
+  '/conteudos': typeof ConteudosRouteWithChildren
+  '/fin-summit': typeof FinSummitRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/programas': typeof ProgramasRoute
+  '/sobre': typeof SobreRouteWithChildren
+  '/termos': typeof TermosRoute
+  '/conteudos/artigos': typeof ConteudosArtigosRoute
+  '/conteudos/newsletter': typeof ConteudosNewsletterRoute
+  '/conteudos/podcast': typeof ConteudosPodcastRoute
+  '/sobre/equipa': typeof SobreEquipaRoute
+  '/sobre/euclides-francisco': typeof SobreEuclidesFranciscoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contactos': typeof ContactosRoute
+  '/conteudos': typeof ConteudosRouteWithChildren
+  '/fin-summit': typeof FinSummitRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/programas': typeof ProgramasRoute
+  '/sobre': typeof SobreRouteWithChildren
+  '/termos': typeof TermosRoute
+  '/conteudos/artigos': typeof ConteudosArtigosRoute
+  '/conteudos/newsletter': typeof ConteudosNewsletterRoute
+  '/conteudos/podcast': typeof ConteudosPodcastRoute
+  '/sobre/equipa': typeof SobreEquipaRoute
+  '/sobre/euclides-francisco': typeof SobreEuclidesFranciscoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contactos': typeof ContactosRoute
+  '/conteudos': typeof ConteudosRouteWithChildren
+  '/fin-summit': typeof FinSummitRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/programas': typeof ProgramasRoute
+  '/sobre': typeof SobreRouteWithChildren
+  '/termos': typeof TermosRoute
+  '/conteudos/artigos': typeof ConteudosArtigosRoute
+  '/conteudos/newsletter': typeof ConteudosNewsletterRoute
+  '/conteudos/podcast': typeof ConteudosPodcastRoute
+  '/sobre/equipa': typeof SobreEquipaRoute
+  '/sobre/euclides-francisco': typeof SobreEuclidesFranciscoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contactos'
+    | '/conteudos'
+    | '/fin-summit'
+    | '/privacidade'
+    | '/programas'
+    | '/sobre'
+    | '/termos'
+    | '/conteudos/artigos'
+    | '/conteudos/newsletter'
+    | '/conteudos/podcast'
+    | '/sobre/equipa'
+    | '/sobre/euclides-francisco'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contactos'
+    | '/conteudos'
+    | '/fin-summit'
+    | '/privacidade'
+    | '/programas'
+    | '/sobre'
+    | '/termos'
+    | '/conteudos/artigos'
+    | '/conteudos/newsletter'
+    | '/conteudos/podcast'
+    | '/sobre/equipa'
+    | '/sobre/euclides-francisco'
+  id:
+    | '__root__'
+    | '/'
+    | '/contactos'
+    | '/conteudos'
+    | '/fin-summit'
+    | '/privacidade'
+    | '/programas'
+    | '/sobre'
+    | '/termos'
+    | '/conteudos/artigos'
+    | '/conteudos/newsletter'
+    | '/conteudos/podcast'
+    | '/sobre/equipa'
+    | '/sobre/euclides-francisco'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactosRoute: typeof ContactosRoute
+  ConteudosRoute: typeof ConteudosRouteWithChildren
+  FinSummitRoute: typeof FinSummitRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
+  ProgramasRoute: typeof ProgramasRoute
+  SobreRoute: typeof SobreRouteWithChildren
+  TermosRoute: typeof TermosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +203,130 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contactos': {
+      id: '/contactos'
+      path: '/contactos'
+      fullPath: '/contactos'
+      preLoaderRoute: typeof ContactosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conteudos': {
+      id: '/conteudos'
+      path: '/conteudos'
+      fullPath: '/conteudos'
+      preLoaderRoute: typeof ConteudosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fin-summit': {
+      id: '/fin-summit'
+      path: '/fin-summit'
+      fullPath: '/fin-summit'
+      preLoaderRoute: typeof FinSummitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programas': {
+      id: '/programas'
+      path: '/programas'
+      fullPath: '/programas'
+      preLoaderRoute: typeof ProgramasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termos': {
+      id: '/termos'
+      path: '/termos'
+      fullPath: '/termos'
+      preLoaderRoute: typeof TermosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conteudos/artigos': {
+      id: '/conteudos/artigos'
+      path: '/artigos'
+      fullPath: '/conteudos/artigos'
+      preLoaderRoute: typeof ConteudosArtigosRouteImport
+      parentRoute: typeof ConteudosRoute
+    }
+    '/conteudos/newsletter': {
+      id: '/conteudos/newsletter'
+      path: '/newsletter'
+      fullPath: '/conteudos/newsletter'
+      preLoaderRoute: typeof ConteudosNewsletterRouteImport
+      parentRoute: typeof ConteudosRoute
+    }
+    '/conteudos/podcast': {
+      id: '/conteudos/podcast'
+      path: '/podcast'
+      fullPath: '/conteudos/podcast'
+      preLoaderRoute: typeof ConteudosPodcastRouteImport
+      parentRoute: typeof ConteudosRoute
+    }
+    '/sobre/equipa': {
+      id: '/sobre/equipa'
+      path: '/equipa'
+      fullPath: '/sobre/equipa'
+      preLoaderRoute: typeof SobreEquipaRouteImport
+      parentRoute: typeof SobreRoute
+    }
+    '/sobre/euclides-francisco': {
+      id: '/sobre/euclides-francisco'
+      path: '/euclides-francisco'
+      fullPath: '/sobre/euclides-francisco'
+      preLoaderRoute: typeof SobreEuclidesFranciscoRouteImport
+      parentRoute: typeof SobreRoute
+    }
   }
 }
 
+interface ConteudosRouteChildren {
+  ConteudosArtigosRoute: typeof ConteudosArtigosRoute
+  ConteudosNewsletterRoute: typeof ConteudosNewsletterRoute
+  ConteudosPodcastRoute: typeof ConteudosPodcastRoute
+}
+
+const ConteudosRouteChildren: ConteudosRouteChildren = {
+  ConteudosArtigosRoute: ConteudosArtigosRoute,
+  ConteudosNewsletterRoute: ConteudosNewsletterRoute,
+  ConteudosPodcastRoute: ConteudosPodcastRoute,
+}
+
+const ConteudosRouteWithChildren = ConteudosRoute._addFileChildren(
+  ConteudosRouteChildren,
+)
+
+interface SobreRouteChildren {
+  SobreEquipaRoute: typeof SobreEquipaRoute
+  SobreEuclidesFranciscoRoute: typeof SobreEuclidesFranciscoRoute
+}
+
+const SobreRouteChildren: SobreRouteChildren = {
+  SobreEquipaRoute: SobreEquipaRoute,
+  SobreEuclidesFranciscoRoute: SobreEuclidesFranciscoRoute,
+}
+
+const SobreRouteWithChildren = SobreRoute._addFileChildren(SobreRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactosRoute: ContactosRoute,
+  ConteudosRoute: ConteudosRouteWithChildren,
+  FinSummitRoute: FinSummitRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
+  ProgramasRoute: ProgramasRoute,
+  SobreRoute: SobreRouteWithChildren,
+  TermosRoute: TermosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

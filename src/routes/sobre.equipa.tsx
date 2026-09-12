@@ -1,0 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageIntro } from "@/components/page-intro";
+export const Route = createFileRoute("/sobre/equipa")({ head: () => ({ meta: seo("Equipa", "Conheça a equipa multidisciplinar do Dinheiro Limpo.") }), component: () => <PageIntro eyebrow="Pessoas" title="A equipa do Dinheiro Limpo" description="Uma equipa que reúne gestão financeira, conteúdo técnico, marketing, vendas e gestão de projectos." link={{ label: "Falar com a equipa", to: "/contactos" }} /> });
+function seo(title:string,description:string){return [{title:`${title} — Dinheiro Limpo`},{name:"description",content:description},{property:"og:title",content:`${title} — Dinheiro Limpo`},{property:"og:description",content:description},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}

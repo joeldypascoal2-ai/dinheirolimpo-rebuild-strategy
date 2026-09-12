@@ -1,0 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageIntro } from "@/components/page-intro";
+export const Route = createFileRoute("/sobre")({ head: () => ({ meta: seo("Sobre o Dinheiro Limpo", "Conheça a instituição angolana dedicada à educação financeira, formação e conteúdos.") }), component: () => <PageIntro eyebrow="Instituição" title="Conhecimento financeiro ligado à vida real." description="O Dinheiro Limpo reúne conteúdos, formação e conversas sobre finanças pessoais, investimentos, negócios e economia angolana." link={{ label: "Conhecer a equipa", to: "/contactos" }} /> });
+function seo(title:string,description:string){return [{title:`${title} — Dinheiro Limpo`},{name:"description",content:description},{property:"og:title",content:`${title} — Dinheiro Limpo`},{property:"og:description",content:description},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}

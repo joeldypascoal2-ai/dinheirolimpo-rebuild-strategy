@@ -1,0 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageIntro } from "@/components/page-intro";
+export const Route = createFileRoute("/conteudos")({ head: () => ({ meta: seo("Conteúdos", "Artigos, podcast e newsletter do Dinheiro Limpo.") }), component: () => <PageIntro eyebrow="Conhecimento" title="Conteúdos para compreender antes de decidir." description="Explore artigos sobre o contexto económico angolano, conversas do Dinheiro Limpo Podcast e A Linguagem do Dinheiro." link={{ label: "Ver programas", to: "/programas" }} /> });
+function seo(title:string,description:string){return [{title:`${title} — Dinheiro Limpo`},{name:"description",content:description},{property:"og:title",content:`${title} — Dinheiro Limpo`},{property:"og:description",content:description},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}

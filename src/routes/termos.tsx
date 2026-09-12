@@ -1,0 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageIntro } from "@/components/page-intro";
+export const Route = createFileRoute("/termos")({ head: () => ({ meta: seo("Termos e Condições", "Termos de utilização do website Dinheiro Limpo.") }), component: () => <PageIntro eyebrow="Informação legal" title="Termos e Condições" description="Os termos oficiais encontram-se em validação antes da publicação integral." /> });
+function seo(title:string,description:string){return [{title:`${title} — Dinheiro Limpo`},{name:"description",content:description},{property:"og:title",content:`${title} — Dinheiro Limpo`},{property:"og:description",content:description},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}

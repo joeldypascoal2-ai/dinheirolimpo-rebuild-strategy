@@ -1,0 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageIntro } from "@/components/page-intro";
+export const Route = createFileRoute("/contactos")({ head: () => ({ meta: seo("Contactos", "Entre em contacto com a equipa do Dinheiro Limpo.") }), component: () => <PageIntro eyebrow="Contactos" title="Fale com a equipa." description="Os canais oficiais de contacto encontram-se em validação. Para assuntos relacionados com o FIN Summit, o site actual indica o WhatsApp +244 930 580 048 para grupos e empresas." /> });
+function seo(title:string,description:string){return [{title:`${title} — Dinheiro Limpo`},{name:"description",content:description},{property:"og:title",content:`${title} — Dinheiro Limpo`},{property:"og:description",content:description},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}
