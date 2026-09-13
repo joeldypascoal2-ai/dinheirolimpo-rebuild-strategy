@@ -13,9 +13,11 @@ export const Route = createFileRoute("/conteudos/artigos/")({
 });
 
 function ArticlesPage() {
-  const [featured, ...rest] = articles;
+  const featured = articles[0];
+  const rest = articles.slice(1);
   const highlights = rest.slice(0, 4);
   const archive = rest.slice(4);
+  if (!featured) return null;
 
   return (
     <main id="conteudo-principal">
