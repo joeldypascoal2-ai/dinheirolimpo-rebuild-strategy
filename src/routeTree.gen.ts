@@ -17,11 +17,12 @@ import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as ProgramasRouteImport } from './routes/programas'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as TermosRouteImport } from './routes/termos'
-import { Route as ConteudosArtigosRouteImport } from './routes/conteudos.artigos'
 import { Route as ConteudosNewsletterRouteImport } from './routes/conteudos.newsletter'
 import { Route as ConteudosPodcastRouteImport } from './routes/conteudos.podcast'
 import { Route as SobreEquipaRouteImport } from './routes/sobre.equipa'
 import { Route as SobreEuclidesFranciscoRouteImport } from './routes/sobre.euclides-francisco'
+import { Route as ConteudosArtigosIndexRouteImport } from './routes/conteudos.artigos.index'
+import { Route as ConteudosArtigosSlugRouteImport } from './routes/conteudos.artigos.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -63,11 +64,6 @@ const TermosRoute = TermosRouteImport.update({
   path: '/termos',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ConteudosArtigosRoute = ConteudosArtigosRouteImport.update({
-  id: '/artigos',
-  path: '/artigos',
-  getParentRoute: () => ConteudosRoute,
-} as any)
 const ConteudosNewsletterRoute = ConteudosNewsletterRouteImport.update({
   id: '/newsletter',
   path: '/newsletter',
@@ -88,6 +84,16 @@ const SobreEuclidesFranciscoRoute = SobreEuclidesFranciscoRouteImport.update({
   path: '/euclides-francisco',
   getParentRoute: () => SobreRoute,
 } as any)
+const ConteudosArtigosIndexRoute = ConteudosArtigosIndexRouteImport.update({
+  id: '/artigos/',
+  path: '/artigos/',
+  getParentRoute: () => ConteudosRoute,
+} as any)
+const ConteudosArtigosSlugRoute = ConteudosArtigosSlugRouteImport.update({
+  id: '/artigos/$slug',
+  path: '/artigos/$slug',
+  getParentRoute: () => ConteudosRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -98,11 +104,12 @@ export interface FileRoutesByFullPath {
   '/programas': typeof ProgramasRoute
   '/sobre': typeof SobreRouteWithChildren
   '/termos': typeof TermosRoute
-  '/conteudos/artigos': typeof ConteudosArtigosRoute
   '/conteudos/newsletter': typeof ConteudosNewsletterRoute
   '/conteudos/podcast': typeof ConteudosPodcastRoute
   '/sobre/equipa': typeof SobreEquipaRoute
   '/sobre/euclides-francisco': typeof SobreEuclidesFranciscoRoute
+  '/conteudos/artigos/$slug': typeof ConteudosArtigosSlugRoute
+  '/conteudos/artigos/': typeof ConteudosArtigosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -113,11 +120,12 @@ export interface FileRoutesByTo {
   '/programas': typeof ProgramasRoute
   '/sobre': typeof SobreRouteWithChildren
   '/termos': typeof TermosRoute
-  '/conteudos/artigos': typeof ConteudosArtigosRoute
   '/conteudos/newsletter': typeof ConteudosNewsletterRoute
   '/conteudos/podcast': typeof ConteudosPodcastRoute
   '/sobre/equipa': typeof SobreEquipaRoute
   '/sobre/euclides-francisco': typeof SobreEuclidesFranciscoRoute
+  '/conteudos/artigos/$slug': typeof ConteudosArtigosSlugRoute
+  '/conteudos/artigos': typeof ConteudosArtigosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -129,11 +137,12 @@ export interface FileRoutesById {
   '/programas': typeof ProgramasRoute
   '/sobre': typeof SobreRouteWithChildren
   '/termos': typeof TermosRoute
-  '/conteudos/artigos': typeof ConteudosArtigosRoute
   '/conteudos/newsletter': typeof ConteudosNewsletterRoute
   '/conteudos/podcast': typeof ConteudosPodcastRoute
   '/sobre/equipa': typeof SobreEquipaRoute
   '/sobre/euclides-francisco': typeof SobreEuclidesFranciscoRoute
+  '/conteudos/artigos/$slug': typeof ConteudosArtigosSlugRoute
+  '/conteudos/artigos/': typeof ConteudosArtigosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -146,11 +155,12 @@ export interface FileRouteTypes {
     | '/programas'
     | '/sobre'
     | '/termos'
-    | '/conteudos/artigos'
     | '/conteudos/newsletter'
     | '/conteudos/podcast'
     | '/sobre/equipa'
     | '/sobre/euclides-francisco'
+    | '/conteudos/artigos/$slug'
+    | '/conteudos/artigos/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -161,11 +171,12 @@ export interface FileRouteTypes {
     | '/programas'
     | '/sobre'
     | '/termos'
-    | '/conteudos/artigos'
     | '/conteudos/newsletter'
     | '/conteudos/podcast'
     | '/sobre/equipa'
     | '/sobre/euclides-francisco'
+    | '/conteudos/artigos/$slug'
+    | '/conteudos/artigos'
   id:
     | '__root__'
     | '/'
@@ -176,11 +187,12 @@ export interface FileRouteTypes {
     | '/programas'
     | '/sobre'
     | '/termos'
-    | '/conteudos/artigos'
     | '/conteudos/newsletter'
     | '/conteudos/podcast'
     | '/sobre/equipa'
     | '/sobre/euclides-francisco'
+    | '/conteudos/artigos/$slug'
+    | '/conteudos/artigos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -252,13 +264,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermosRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/conteudos/artigos': {
-      id: '/conteudos/artigos'
-      path: '/artigos'
-      fullPath: '/conteudos/artigos'
-      preLoaderRoute: typeof ConteudosArtigosRouteImport
-      parentRoute: typeof ConteudosRoute
-    }
     '/conteudos/newsletter': {
       id: '/conteudos/newsletter'
       path: '/newsletter'
@@ -287,19 +292,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreEuclidesFranciscoRouteImport
       parentRoute: typeof SobreRoute
     }
+    '/conteudos/artigos/': {
+      id: '/conteudos/artigos/'
+      path: '/artigos'
+      fullPath: '/conteudos/artigos/'
+      preLoaderRoute: typeof ConteudosArtigosIndexRouteImport
+      parentRoute: typeof ConteudosRoute
+    }
+    '/conteudos/artigos/$slug': {
+      id: '/conteudos/artigos/$slug'
+      path: '/artigos/$slug'
+      fullPath: '/conteudos/artigos/$slug'
+      preLoaderRoute: typeof ConteudosArtigosSlugRouteImport
+      parentRoute: typeof ConteudosRoute
+    }
   }
 }
 
 interface ConteudosRouteChildren {
-  ConteudosArtigosRoute: typeof ConteudosArtigosRoute
   ConteudosNewsletterRoute: typeof ConteudosNewsletterRoute
   ConteudosPodcastRoute: typeof ConteudosPodcastRoute
+  ConteudosArtigosSlugRoute: typeof ConteudosArtigosSlugRoute
+  ConteudosArtigosIndexRoute: typeof ConteudosArtigosIndexRoute
 }
 
 const ConteudosRouteChildren: ConteudosRouteChildren = {
-  ConteudosArtigosRoute: ConteudosArtigosRoute,
   ConteudosNewsletterRoute: ConteudosNewsletterRoute,
   ConteudosPodcastRoute: ConteudosPodcastRoute,
+  ConteudosArtigosSlugRoute: ConteudosArtigosSlugRoute,
+  ConteudosArtigosIndexRoute: ConteudosArtigosIndexRoute,
 }
 
 const ConteudosRouteWithChildren = ConteudosRoute._addFileChildren(
