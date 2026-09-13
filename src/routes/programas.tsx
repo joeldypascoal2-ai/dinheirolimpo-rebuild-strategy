@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { PageIntro } from "@/components/page-intro";
-export const Route = createFileRoute("/programas")({ head: () => ({ meta: seo("Programas", "Conheça os programas e recursos de educação financeira do Dinheiro Limpo.") }), component: () => <PageIntro eyebrow="Formação" title="Percursos para transformar conhecimento em prática." description="O Caminho da Liberdade, JIS — Jornada do Investidor de Sucesso, O Mestre das Acções e o ebook Como começar um negócio do zero compõem a oferta actual. As condições detalhadas encontram-se em validação." link={{ label: "Falar com a equipa", to: "/contactos" }} /> });
-function seo(title:string,description:string){return [{title:`${title} — Dinheiro Limpo`},{name:"description",content:description},{property:"og:title",content:`${title} — Dinheiro Limpo`},{property:"og:description",content:description},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}
+import { Outlet, createFileRoute } from "@tanstack/react-router";
+
+export const Route = createFileRoute("/programas")({ component: () => <Outlet /> });
