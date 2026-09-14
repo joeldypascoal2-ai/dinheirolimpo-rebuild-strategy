@@ -1,5 +1,41 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageHeader, seoMeta } from "@/components/editorial";
 import { NewsletterForm } from "@/components/newsletter-form";
-export const Route = createFileRoute("/conteudos/newsletter")({ head: () => ({ meta: seo("A Linguagem do Dinheiro", "Newsletter do Dinheiro Limpo sobre património e decisões financeiras.") }), component: NewsletterPage });
-function NewsletterPage(){return <main id="conteudo-principal"><section className="section-space"><div className="container-standard max-w-3xl"><p className="text-xs font-semibold uppercase tracking-[.08em] text-secondary">Newsletter</p><h1 className="mt-5 text-[clamp(2.5rem,5vw,4rem)] leading-[1.06] text-primary">A Linguagem do Dinheiro</h1><p className="mt-6 max-w-[58ch] text-lg leading-8 text-muted-foreground">Informação sobre as melhores formas de administrar e fazer crescer o seu património.</p><NewsletterForm /></div></section></main>}
-function seo(title:string,description:string){return [{title:`${title} — Dinheiro Limpo`},{name:"description",content:description},{property:"og:title",content:`${title} — Dinheiro Limpo`},{property:"og:description",content:description},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}
+
+export const Route = createFileRoute("/conteudos/newsletter")({
+  head: () => ({
+    meta: seoMeta(
+      "Newsletter",
+      "A Linguagem do Dinheiro: a newsletter do Dinheiro Limpo sobre finanças pessoais e contexto económico.",
+    ),
+  }),
+  component: NewsletterPage,
+});
+
+function NewsletterPage() {
+  return (
+    <main id="conteudo-principal">
+      <PageHeader
+        eyebrow="Newsletter"
+        title="A Linguagem do Dinheiro"
+        lead="Uma leitura regular sobre finanças pessoais, decisões de investimento e o contexto económico que afecta o dia a dia."
+        breadcrumb={[{ label: "Conteúdos", to: "/conteudos" }]}
+      />
+
+      <section className="section-space">
+        <div className="container-standard max-w-[62ch]">
+          <h2 className="text-2xl text-primary">O que recebe</h2>
+          <p className="mt-4 text-lg leading-8">
+            Escrevemos sobre os mesmos temas que publicamos nos artigos: poupança, investimento, mercados, negócios e
+            economia angolana, em linguagem acessível.
+          </p>
+          <NewsletterForm />
+          <p className="mt-10 border-t border-border pt-6 text-sm text-muted-foreground">
+            A ligação ao serviço de envio de emails ainda não está configurada neste website. Até lá, nenhum endereço é
+            recolhido nem guardado.
+          </p>
+        </div>
+      </section>
+    </main>
+  );
+}
