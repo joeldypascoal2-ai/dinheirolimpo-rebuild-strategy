@@ -20,6 +20,8 @@ import { Route as TermosRouteImport } from './routes/termos'
 import { Route as ConteudosIndexRouteImport } from './routes/conteudos.index'
 import { Route as ConteudosNewsletterRouteImport } from './routes/conteudos.newsletter'
 import { Route as ConteudosPodcastRouteImport } from './routes/conteudos.podcast'
+import { Route as ProgramasIndexRouteImport } from './routes/programas.index'
+import { Route as ProgramasSlugRouteImport } from './routes/programas.$slug'
 import { Route as SobreIndexRouteImport } from './routes/sobre.index'
 import { Route as SobreEquipaRouteImport } from './routes/sobre.equipa'
 import { Route as SobreEuclidesFranciscoRouteImport } from './routes/sobre.euclides-francisco'
@@ -81,6 +83,16 @@ const ConteudosPodcastRoute = ConteudosPodcastRouteImport.update({
   path: '/podcast',
   getParentRoute: () => ConteudosRoute,
 } as any)
+const ProgramasIndexRoute = ProgramasIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProgramasRoute,
+} as any)
+const ProgramasSlugRoute = ProgramasSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ProgramasRoute,
+} as any)
 const SobreIndexRoute = SobreIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -113,14 +125,16 @@ export interface FileRoutesByFullPath {
   '/conteudos': typeof ConteudosRouteWithChildren
   '/fin-summit': typeof FinSummitRoute
   '/privacidade': typeof PrivacidadeRoute
-  '/programas': typeof ProgramasRoute
+  '/programas': typeof ProgramasRouteWithChildren
   '/sobre': typeof SobreRouteWithChildren
   '/termos': typeof TermosRoute
   '/conteudos/newsletter': typeof ConteudosNewsletterRoute
   '/conteudos/podcast': typeof ConteudosPodcastRoute
+  '/programas/$slug': typeof ProgramasSlugRoute
   '/sobre/equipa': typeof SobreEquipaRoute
   '/sobre/euclides-francisco': typeof SobreEuclidesFranciscoRoute
   '/conteudos/': typeof ConteudosIndexRoute
+  '/programas/': typeof ProgramasIndexRoute
   '/sobre/': typeof SobreIndexRoute
   '/conteudos/artigos/$slug': typeof ConteudosArtigosSlugRoute
   '/conteudos/artigos/': typeof ConteudosArtigosIndexRoute
@@ -130,13 +144,14 @@ export interface FileRoutesByTo {
   '/contactos': typeof ContactosRoute
   '/fin-summit': typeof FinSummitRoute
   '/privacidade': typeof PrivacidadeRoute
-  '/programas': typeof ProgramasRoute
   '/termos': typeof TermosRoute
   '/conteudos/newsletter': typeof ConteudosNewsletterRoute
   '/conteudos/podcast': typeof ConteudosPodcastRoute
+  '/programas/$slug': typeof ProgramasSlugRoute
   '/sobre/equipa': typeof SobreEquipaRoute
   '/sobre/euclides-francisco': typeof SobreEuclidesFranciscoRoute
   '/conteudos': typeof ConteudosIndexRoute
+  '/programas': typeof ProgramasIndexRoute
   '/sobre': typeof SobreIndexRoute
   '/conteudos/artigos/$slug': typeof ConteudosArtigosSlugRoute
   '/conteudos/artigos': typeof ConteudosArtigosIndexRoute
@@ -148,14 +163,16 @@ export interface FileRoutesById {
   '/conteudos': typeof ConteudosRouteWithChildren
   '/fin-summit': typeof FinSummitRoute
   '/privacidade': typeof PrivacidadeRoute
-  '/programas': typeof ProgramasRoute
+  '/programas': typeof ProgramasRouteWithChildren
   '/sobre': typeof SobreRouteWithChildren
   '/termos': typeof TermosRoute
   '/conteudos/newsletter': typeof ConteudosNewsletterRoute
   '/conteudos/podcast': typeof ConteudosPodcastRoute
+  '/programas/$slug': typeof ProgramasSlugRoute
   '/sobre/equipa': typeof SobreEquipaRoute
   '/sobre/euclides-francisco': typeof SobreEuclidesFranciscoRoute
   '/conteudos/': typeof ConteudosIndexRoute
+  '/programas/': typeof ProgramasIndexRoute
   '/sobre/': typeof SobreIndexRoute
   '/conteudos/artigos/$slug': typeof ConteudosArtigosSlugRoute
   '/conteudos/artigos/': typeof ConteudosArtigosIndexRoute
@@ -173,9 +190,11 @@ export interface FileRouteTypes {
     | '/termos'
     | '/conteudos/newsletter'
     | '/conteudos/podcast'
+    | '/programas/$slug'
     | '/sobre/equipa'
     | '/sobre/euclides-francisco'
     | '/conteudos/'
+    | '/programas/'
     | '/sobre/'
     | '/conteudos/artigos/$slug'
     | '/conteudos/artigos/'
@@ -185,13 +204,14 @@ export interface FileRouteTypes {
     | '/contactos'
     | '/fin-summit'
     | '/privacidade'
-    | '/programas'
     | '/termos'
     | '/conteudos/newsletter'
     | '/conteudos/podcast'
+    | '/programas/$slug'
     | '/sobre/equipa'
     | '/sobre/euclides-francisco'
     | '/conteudos'
+    | '/programas'
     | '/sobre'
     | '/conteudos/artigos/$slug'
     | '/conteudos/artigos'
@@ -207,9 +227,11 @@ export interface FileRouteTypes {
     | '/termos'
     | '/conteudos/newsletter'
     | '/conteudos/podcast'
+    | '/programas/$slug'
     | '/sobre/equipa'
     | '/sobre/euclides-francisco'
     | '/conteudos/'
+    | '/programas/'
     | '/sobre/'
     | '/conteudos/artigos/$slug'
     | '/conteudos/artigos/'
@@ -221,7 +243,7 @@ export interface RootRouteChildren {
   ConteudosRoute: typeof ConteudosRouteWithChildren
   FinSummitRoute: typeof FinSummitRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
-  ProgramasRoute: typeof ProgramasRoute
+  ProgramasRoute: typeof ProgramasRouteWithChildren
   SobreRoute: typeof SobreRouteWithChildren
   TermosRoute: typeof TermosRoute
 }
@@ -305,6 +327,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConteudosPodcastRouteImport
       parentRoute: typeof ConteudosRoute
     }
+    '/programas/': {
+      id: '/programas/'
+      path: '/'
+      fullPath: '/programas/'
+      preLoaderRoute: typeof ProgramasIndexRouteImport
+      parentRoute: typeof ProgramasRoute
+    }
+    '/programas/$slug': {
+      id: '/programas/$slug'
+      path: '/$slug'
+      fullPath: '/programas/$slug'
+      preLoaderRoute: typeof ProgramasSlugRouteImport
+      parentRoute: typeof ProgramasRoute
+    }
     '/sobre/': {
       id: '/sobre/'
       path: '/'
@@ -363,6 +399,20 @@ const ConteudosRouteWithChildren = ConteudosRoute._addFileChildren(
   ConteudosRouteChildren,
 )
 
+interface ProgramasRouteChildren {
+  ProgramasSlugRoute: typeof ProgramasSlugRoute
+  ProgramasIndexRoute: typeof ProgramasIndexRoute
+}
+
+const ProgramasRouteChildren: ProgramasRouteChildren = {
+  ProgramasSlugRoute: ProgramasSlugRoute,
+  ProgramasIndexRoute: ProgramasIndexRoute,
+}
+
+const ProgramasRouteWithChildren = ProgramasRoute._addFileChildren(
+  ProgramasRouteChildren,
+)
+
 interface SobreRouteChildren {
   SobreEquipaRoute: typeof SobreEquipaRoute
   SobreEuclidesFranciscoRoute: typeof SobreEuclidesFranciscoRoute
@@ -383,7 +433,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConteudosRoute: ConteudosRouteWithChildren,
   FinSummitRoute: FinSummitRoute,
   PrivacidadeRoute: PrivacidadeRoute,
-  ProgramasRoute: ProgramasRoute,
+  ProgramasRoute: ProgramasRouteWithChildren,
   SobreRoute: SobreRouteWithChildren,
   TermosRoute: TermosRoute,
 }
